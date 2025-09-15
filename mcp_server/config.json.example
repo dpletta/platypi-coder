@@ -1,0 +1,47 @@
+{
+  "agent": {
+    "max_subtasks": 10,
+    "planning_strategies": ["sequential", "parallel", "iterative", "agile"],
+    "supported_languages": ["python", "javascript", "typescript", "java", "go", "rust"],
+    "code_standards": {
+      "python": "PEP8",
+      "javascript": "ESLint",
+      "typescript": "TSLint",
+      "java": "Google Java Style",
+      "go": "gofmt",
+      "rust": "rustfmt"
+    },
+    "quality_thresholds": {
+      "complexity": 10,
+      "maintainability": 0.7,
+      "test_coverage": 0.8,
+      "security_score": 0.9
+    },
+    "debugging_strategies": ["systematic", "binary_search", "hypothesis_testing", "log_analysis"],
+    "test_types": ["unit", "integration", "performance", "security", "usability"],
+    "coverage_thresholds": {
+      "unit": 0.8,
+      "integration": 0.6,
+      "overall": 0.7
+    }
+  },
+  "ensemble": {
+    "consensus_threshold": 0.7,
+    "max_concurrent_tasks": 5,
+    "task_timeout": 300,
+    "retry_attempts": 3,
+    "log_level": "INFO",
+    "enable_monitoring": true,
+    "enable_metrics": true,
+    "metrics_interval": 60
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8000,
+    "workers": 1,
+    "reload": false,
+    "log_level": "INFO",
+    "cors_origins": ["*"],
+    "max_request_size": 10485760
+  }
+}
