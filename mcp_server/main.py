@@ -20,6 +20,12 @@ class MockApi:
         self.run_shell_command = MockTool("run_shell_command")
         self.search_file_content = MockTool("search_file_content")
         self.glob = MockTool("glob")
+        self.planner = MockTool("planner")
+        self.orchestrator = MockTool("orchestrator")
+        self.consensus = MockTool("consensus")
+        self.codereview = MockTool("codereview")
+        self.debug = MockTool("debug")
+        self.google_web_search = MockTool("google_web_search")
 
 default_api = MockApi()
 
@@ -66,6 +72,26 @@ class GlobRequest(BaseModel):
     path: Optional[str] = None
     respect_git_ignore: Optional[bool] = None
 
+class PlannerRequest(BaseModel):
+    task: str
+
+class OrchestratorRequest(BaseModel):
+    plan: List[Dict]
+
+class ConsensusRequest(BaseModel):
+    problem: str
+    solutions: List[str]
+
+class CodeReviewRequest(BaseModel):
+    code: str
+
+class DebugRequest(BaseModel):
+    code: str
+    error: str
+
+class GoogleWebSearchRequest(BaseModel):
+    query: str
+
 
 # Endpoints
 @app.post("/tools/list_directory")
@@ -95,3 +121,27 @@ def search_file_content(request: SearchFileContentRequest):
 @app.post("/tools/glob")
 def glob(request: GlobRequest):
     return default_api.glob(**request.dict())
+
+@app.post("/tools/planner")
+def planner(request: PlannerRequest):
+    return default_api.planner(**request.dict())
+
+@app.post("/tools/orchestrator")
+def orchestrator(request: OrchestratorRequest):
+    return default_api.orchestrator(**request.dict())
+
+@app.post("/tools/consensus")
+def consensus(request: ConsensusRequest):
+    return default_api.consensus(**request.dict())
+
+@app.post("/tools/codereview")
+def codereview(request: CodeReviewRequest):
+    return default_api.codereview(**request.dict())
+
+@app.post("/tools/debug")
+def debug(request: DebugRequest):
+    return default_api.debug(**request.dict())
+
+@app.post("/tools/google_web_search")
+def google_web_search(request: GoogleWebSearchRequest):
+    return default_api.google_web_search(**request.dict())
